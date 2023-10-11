@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using DE_Ejercicio1CF.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<DE_Ejercicio1CFContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DE_Ejercicio1CFContext") ?? throw new InvalidOperationException("Connection string 'DE_Ejercicio1CFContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
